@@ -1,0 +1,7 @@
+<h2>{{course}} Learning Plan</h2>
+
+<ul>
+{% for day, topic in plan.items() %}
+  <li>{{day}}: {{topic}}</li>
+{% endfor %}
+</ul>

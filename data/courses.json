@@ -1,0 +1,44 @@
+{
+  "C": {
+    "beginner": [
+      "Introduction to C",
+      "Variables & Constants",
+      "Data Types",
+      "Operators",
+      "Control Statements",
+      "Loops",
+      "Functions",
+      "Arrays",
+      "Pointers",
+      "Structures"
+    ]
+  },
+  "Python": {
+    "beginner": [
+      "Introduction to Python",
+      "Variables",
+      "Data Types",
+      "Conditionals",
+      "Loops",
+      "Functions",
+      "Lists & Tuples",
+      "Dictionaries",
+      "File Handling",
+      "OOP Basics"
+    ]
+  },
+  "AI": {
+    "beginner": [
+      "What is AI?",
+      "History of AI",
+      "AI vs ML vs DL",
+      "Python for AI",
+      "Data Basics",
+      "Supervised Learning",
+      "Unsupervised Learning",
+      "Neural Networks",
+      "Ethics in AI",
+      "Real-world Applications"
+    ]
+  }
+}

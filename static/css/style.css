@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    min-height: 100vh;
+}
+
+.left-content {
+    flex: 1;
+    max-width: 500px;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #ffffff 0%, #f0f8ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-form input, .input-form select {
+    padding: 20px 25px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.input-form input:focus, .input-form select:focus {
+    outline: none;
+    transform: translateY(-3px);
+    box-shadow: 0 25px 50px rgba(255,255,255,0.3);
+}
+
+.input-form button {
+    padding: 22px 30px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3, #54a0ff);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 20px 40px rgba(255,107,107,0.4);
+}
+
+.input-form button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(255,107,107,0.6);
+}
+
+.right-graphic {
+    flex: 1;
+    position: relative;
+    height: 500px;
+}
+
+.card-float {
+    position: absolute;
+    padding: 20px 30px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: float 6s ease-in-out infinite;
+}
+
+.python {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.c-lang {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    top: 50%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.ai {
+    background: linear-gradient(135deg, #fa709a, #fee140);
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(2deg); }
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .right-graphic {
+        height: 200px;
+        margin-top: 50px;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .card-float {
+        font-size: 1rem;
+        padding: 15px 20px;
+    }
+}

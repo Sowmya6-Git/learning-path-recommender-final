@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Duration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* SAME COLORFUL STYLES AS BEFORE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .hero-container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            color: white;
+        }
+        
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff 0%, #f0f8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .course-info {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .duration-input {
+            width: 100%;
+            padding: 25px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+            color: #333;
+        }
+        
+        .duration-input:focus {
+            outline: none;
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px rgba(255,255,255,0.3);
+        }
+        
+        .days-label {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+            font-weight: 600;
+            pointer-events: none;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 15px;
+            border-radius: 15px;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 25px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48cae4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(255,107,107,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(255,107,107,0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.2rem; }
+            .duration-input { font-size: 1.2rem; padding: 20px 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <h1 class="main-title">📅 Learning Duration</h1>
+        <p class="course-info">{{ name }}, in how many days do you want to finish <strong>{{ course }}</strong>?</p>
+        
+        <form action="/duration" method="POST">
+            <input type="hidden" name="name" value="{{ name }}">
+            <input type="hidden" name="course" value="{{ course }}">
+            
+            <div class="input-group">
+                <input type="number" name="days" class="duration-input" min="1" max="60" placeholder="Enter number of days" required>
+                <span class="days-label">days</span>
+            </div>
+            
+            <button type="submit" class="generate-btn">🧭 Generate Roadmap</button>
+        </form>
+    </div>
+</body>
+</html>

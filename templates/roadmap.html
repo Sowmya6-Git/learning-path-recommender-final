@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Learning Roadmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* SAME COLORFUL STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .roadmap-container {
+            max-width: 900px;
+            margin: 0 auto;
+            color: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff 0%, #f0f8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .welcome-text {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .summary-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .badge {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .course-badge { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .level-badge { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .days-badge { background: linear-gradient(135deg, #fa709a, #fee140); }
+        
+        .day-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        
+        .day-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .day-topic {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+        
+        .footer-motivation {
+            background: rgba(16,185,129,0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            border-left: 5px solid #10b981;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .day-card:nth-child(1) { animation-delay: 0.1s; }
+        .day-card:nth-child(2) { animation-delay: 0.2s; }
+        .day-card:nth-child(3) { animation-delay: 0.3s; }
+        .day-card:nth-child(n+4) { animation-delay: 0.4s; }
+        
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.5rem; }
+            .day-card { padding: 20px; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="roadmap-container">
+        <div class="header">
+            <h1 class="main-title">🚀 Your Learning Roadmap</h1>
+            <p class="welcome-text">Hi <strong>{{ name }}</strong> 😊 Let's master <strong>{{ course }}</strong> step by step!</p>
+        </div>
+        
+        <!-- SUMMARY CARD -->
+        <div class="summary-card">
+            <div class="badges">
+                <div class="badge course-badge">📘 {{ course }}</div>
+                <div class="badge level-badge">🎯 {{ level }}</div>
+                <div class="badge days-badge">⏳ {{ days }} days</div>
+            </div>
+        </div>
+        
+        <!-- DAY CARDS -->
+        {% for item in plan %}
+        <div class="day-card">
+            <div class="day-number">📅 Day {{ item.day }}</div>
+            <div class="day-topic">👉 {{ item.topic }}</div>
+        </div>
+        {% endfor %}
+        
+        <!-- MOTIVATIONAL FOOTER -->
+        <div class="footer-motivation">
+            <h3>🌱 Keep Going!</h3>
+            <p>Learning is a journey, not a race. You're doing great — consistency is key! 💪</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* SAME COLORFUL STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .hero-container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            color: white;
+        }
+        
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff 0%, #f0f8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .level-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .beginner-btn {
+            background: linear-gradient(45deg, #00c9ff, #92fe9d);
+        }
+        
+        .basic-btn {
+            background: linear-gradient(45deg, #ffecd2, #fcb69f);
+        }
+        
+        .level-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .button-group { flex-direction: column; }
+            .main-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <h1 class="main-title">Hello {{ name }} 👋</h1>
+        <p class="subtitle">How familiar are you with <strong>{{ course }}</strong>?</p>
+        
+        <form action="/experience" method="POST" class="button-group">
+            <input type="hidden" name="name" value="{{ name }}">
+            <input type="hidden" name="course" value="{{ course }}">
+            
+            <button type="submit" name="level" value="beginner" class="level-btn beginner-btn">
+                🌱 I'm Just Starting
+            </button>
+            <button type="submit" name="level" value="basic" class="level-btn basic-btn">
+                🚀 I Have Some Basics
+            </button>
+        </form>
+    </div>
+</body>
+</html>
+

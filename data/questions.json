@@ -1,0 +1,44 @@
+{
+  "C": [
+    {
+      "id": "q1",
+      "question": "int a=5; What is output of: printf('%d', a++ + ++a);",
+      "options": ["11", "12", "13", "Undefined"],
+      "answer": "Undefined"
+    },
+    {
+      "id": "q2",
+      "question": "Correct way to declare pointer?",
+      "options": ["int *p;", "int* p;", "int * p;", "All correct"],
+      "answer": "All correct"
+    }
+  ],
+  "Python": [
+    {
+      "id": "q1",
+      "question": "What is output: print(2**3)?",
+      "options": ["6", "8", "9", "Error"],
+      "answer": "8"
+    },
+    {
+      "id": "q2",
+      "question": "Which is NOT Python keyword?",
+      "options": ["def", "class", "function", "if"],
+      "answer": "function"
+    }
+  ],
+  "AI": [
+    {
+      "id": "q1",
+      "question": "AI stands for?",
+      "options": ["Artificial Intelligence", "Advanced Intelligence", "Automated Intelligence", "Artificial Integration"],
+      "answer": "Artificial Intelligence"
+    },
+    {
+      "id": "q2",
+      "question": "Type of Machine Learning?",
+      "options": ["Supervised", "Cloud", "Web", "Mobile"],
+      "answer": "Supervised"
+    }
+  ]
+}

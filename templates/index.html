@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning Path Recommender</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* INLINE CSS - 100% GUARANTEED TO WORK */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .hero-container {
+            display: flex;
+            gap: 50px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .left-content {
+            flex: 1;
+            color: white;
+        }
+        
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff 0%, #f0f8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .input-form input, .input-form select {
+            width: 100%;
+            padding: 18px 25px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .input-form input:focus, .input-form select:focus {
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.3);
+        }
+        
+        .input-form button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+        }
+        
+        .input-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255,107,107,0.6);
+        }
+        
+        .right-graphic {
+            flex: 1;
+            position: relative;
+            height: 400px;
+        }
+        
+        .card-float {
+            position: absolute;
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: white;
+            font-weight: 600;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .python { background: linear-gradient(135deg, #4facfe, #00f2fe); top: 10%; left: 10%; }
+        .c-lang { background: linear-gradient(135deg, #43e97b, #38f9d7); top: 50%; right: 10%; }
+        .ai { background: linear-gradient(135deg, #fa709a, #fee140); bottom: 20%; left: 10%; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-container { flex-direction: column; text-align: center; }
+            .main-title { font-size: 2.5rem; }
+            .right-graphic { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <div class="left-content">
+            <h1 class="main-title">Learning Path Recommender</h1>
+            <p class="subtitle">Let's find your perfect learning path! It only takes a minute.</p>
+            
+            <form method="POST" class="input-form">
+                <input type="text" name="name" placeholder="👤 What's your name?" required>
+                <select name="course" required>
+                    <option value="">📚 Choose Language</option>
+                    {% for course in courses %}
+                    <option value="{{ course }}">{{ course }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">🚀 Start Learning Path</button>
+            </form>
+        </div>
+        
+        <div class="right-graphic">
+            <div class="card-float python">🐍 Python</div>
+            <div class="card-float c-lang">⚡ C</div>
+            <div class="card-float ai">🤖 AI</div>
+        </div>
+    </div>
+</body>
+</html>
