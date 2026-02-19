@@ -73,6 +73,62 @@
         .level-badge { background: linear-gradient(135deg, #43e97b, #38f9d7); }
         .days-badge { background: linear-gradient(135deg, #fa709a, #fee140); }
         
+        /* ⭐ NEW: ScaleDown Section */
+        .scaledown-section {
+            background: rgba(79, 172, 254, 0.15);
+            backdrop-filter: blur(25px);
+            border-radius: 25px;
+            padding: 35px;
+            margin: 30px 0;
+            border: 1px solid rgba(79, 172, 254, 0.4);
+            box-shadow: 0 20px 45px rgba(79, 172, 254, 0.2);
+            animation: glowPulse 2s ease-in-out infinite alternate;
+        }
+        
+        .api-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .api-header h2 {
+            color: #fff;
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .api-status {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .roadmap-content pre {
+            color: #f0f8ff;
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-radius: 20px;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 1.15rem;
+            border-left: 5px solid #4facfe;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: auto;
+        }
+        
         .day-card {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(15px);
@@ -123,14 +179,19 @@
             }
         }
         
+        @keyframes glowPulse {
+            0% { box-shadow: 0 20px 45px rgba(79, 172, 254, 0.2); }
+            100% { box-shadow: 0 20px 45px rgba(79, 172, 254, 0.4); }
+        }
+        
         .day-card:nth-child(1) { animation-delay: 0.1s; }
         .day-card:nth-child(2) { animation-delay: 0.2s; }
-        .day-card:nth-child(3) { animation-delay: 0.3s; }
-        .day-card:nth-child(n+4) { animation-delay: 0.4s; }
+        .day-card:nth-child(n+3) { animation-delay: 0.4s; }
         
         @media (max-width: 768px) {
             .main-title { font-size: 2.5rem; }
-            .day-card { padding: 20px; margin-bottom: 15px; }
+            .day-card, .scaledown-section { padding: 20px; margin-bottom: 15px; }
+            .api-header { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -150,18 +211,35 @@
             </div>
         </div>
         
-        <!-- DAY CARDS -->
+        <!-- ⭐ ScaleDown API ROADMAP (Primary for Beginners) -->
+        <div class="scaledown-section">
+            <div class="api-header">
+                <h2>🤖 ScaleDown AI Generated Roadmap</h2>
+                <div class="api-status">{{ api_status or 'Loading...' }}</div>
+            </div>
+            <div class="roadmap-content">
+                <pre>{{ roadmap_content or 'Generating personalized roadmap...' }}</pre>
+            </div>
+        </div>
+        
+        <!-- FALLBACK: Original Day Cards (for Quiz path) -->
+        {% if plan %}
+        <div style="text-align: center; color: #a0a0a0; margin: 20px 0;">
+            📋 Traditional Roadmap (Quiz Path)
+        </div>
         {% for item in plan %}
         <div class="day-card">
             <div class="day-number">📅 Day {{ item.day }}</div>
             <div class="day-topic">👉 {{ item.topic }}</div>
         </div>
         {% endfor %}
+        {% endif %}
         
         <!-- MOTIVATIONAL FOOTER -->
         <div class="footer-motivation">
-            <h3>🌱 Keep Going!</h3>
-            <p>Learning is a journey, not a race. You're doing great — consistency is key! 💪</p>
+            <h3>🌟 Powered by Intel Internship APIs</h3>
+            <p><strong>ScaleDown AI</strong> compresses learning prompts while preserving quality. 
+            Your roadmap is optimized for maximum learning efficiency! 🚀</p>
         </div>
     </div>
 </body>

@@ -1,5 +1,11 @@
 from flask import Flask, render_template, request
 import json
+import os
+import requests
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -72,7 +78,7 @@ def experience():
         return render_template("quiz.html", name=name, course=course, quiz=quiz_questions)
 
 # -------------------------------
-# DURATION → ROADMAP
+# DURATION → ScaleDown API → ROADMAP ⭐ NEW
 # -------------------------------
 @app.route("/duration", methods=["POST"])
 def duration():
@@ -80,19 +86,73 @@ def duration():
     course = request.form["course"]
     days = int(request.form["days"])
     
-    print(f"⏰ DURATION: {name} wants {days} days for {course}")
+    print(f"⏰ ScaleDown API: {name} wants {days} days for {course}")
     
-    topics = COURSES.get(course, {}).get("beginner", [])
-    plan = []
+    # ScaleDown context + prompt
+    context = f"""
+    Create detailed {days}-day {course} learning roadmap for beginners.
+    Each day should include:
+    - 3-5 learning objectives
+    - Key concepts to master
+    - 2-3 practice exercises
+    - Free resources (YouTube, documentation)
+    - 2-4 hours daily study time
     
-    for i in range(days):
-        topic = topics[i % len(topics)]  # Cycle through topics
-        plan.append({"day": i + 1, "topic": topic})
+    Student name: {name}
+    Course level: Beginner
+    """
     
-    return render_template("roadmap.html", name=name, course=course, level="Beginner 🌱", days=days, plan=plan)
+    prompt = f"Generate complete {days}-day {course} learning roadmap for {name}"
+    
+    # ScaleDown API Integration
+    roadmap_content = f"{days}-day {course} roadmap (ScaleDown processing...)"
+    api_status = "Loading..."
+    
+    try:
+        response = requests.post(
+            "https://api.scaledown.xyz/compress/raw/",
+            headers={
+                "x-api-key": os.getenv('SCALEDOWN_API_KEY'),
+                "Content-Type": "application/json"
+            },
+            json={
+                "context": context,
+                "prompt": prompt,
+                "scaledown": {"rate": "auto"}
+            },
+            timeout=15
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            roadmap_content = result['results']['compressed_prompt']
+            savings = result['results'].get('savings_percent', 0)
+            api_status = f"ScaleDown ✓ ({savings}% compressed)"
+            print(f"✅ ScaleDown SUCCESS: {savings}% compression!")
+        else:
+            api_status = f"Error {response.status_code}"
+            print(f"❌ ScaleDown Error: {response.status_code}")
+            
+    except Exception as e:
+        api_status = "Backup mode"
+        roadmap_content = f"""
+        Day 1-{days}: {course} Fundamentals
+        - Complete beginner roadmap generated
+        - ScaleDown API temporarily unavailable
+        - Static fallback activated for {name}
+        """
+        print(f"⚠️ ScaleDown fallback: {e}")
+    
+    return render_template("roadmap.html", 
+                         name=name, 
+                         course=course, 
+                         level="Beginner 🌱", 
+                         days=days, 
+                         roadmap_content=roadmap_content,
+                         api_status=api_status)
 
 # -------------------------------
-# QUIZ → ROADMAP
+# QUIZ → ROADMAP (unchanged)
 # -------------------------------
 @app.route("/quiz", methods=["POST"])
 def quiz_result():
@@ -118,11 +178,9 @@ def quiz_result():
     
     if score >= total_questions // 2 + 1:
         level = "Intermediate 🚀"
-        # Use more advanced topics (last half)
         topics = topics[len(topics)//2:]
     else:
         level = "Needs Revision 🔄"
-        # Use beginner topics (first half)
         topics = topics[:len(topics)//2]
     
     days = len(topics)
@@ -134,6 +192,7 @@ def quiz_result():
 # RUN SERVER
 # -------------------------------
 if __name__ == "__main__":
-    print("🌟 Learning Path Recommender Starting...")
+    print("🌟 Learning Path Recommender + ScaleDown API Starting...")
     print("📱 Visit: http://127.0.0.1:5000")
+    print("🔑 ScaleDown API Key loaded:", "YES" if os.getenv('SCALEDOWN_API_KEY') else "NO")
     app.run(debug=True, port=5000)
