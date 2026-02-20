@@ -66,7 +66,46 @@ Each course contains a small set of concept-based questions designed to test fun
 
 This ensures the learning path matches the learner’s actual skill level.
 
-
 * Basic knowledge assessment using quizzes
 
 * Adaptive roadmap generation
+  
+***Tech stack :***
+
+Frontend: HTML/CSS/JS (Glassmorphism)
+
+Backend: Flask (Python)
+
+Data: JSON (Courses/Questions)
+
+Deployment: Local Flask server
+
+***Project Structure :***
+
+├── app.py                 # Flask backend + ScaleDown API
+
+├── .env                   # API key (gitignored)
+
+├── .gitignore            # Secure!
+
+├── data/
+
+│   ├── courses.json      # Course topics
+
+│   └── questions.json    # Quiz questions
+
+├── templates/            # HTML (index, roadmap, quiz)
+
+└── static/              # CSS/JS (Glassmorphism)
+
+***Future Enhancements :***
+
+* ML Personalization - User history analysis
+
+* Voice Input - Speech-to-text course selection
+
+* Mobile App - React Native companion
+
+***Conclusion :***
+
+The Learning Path Recommender provides a structured and personalized learning experience by adapting content based on user experience level and assessment results. It reduces confusion, prevents overload, and enables efficient learning progression.
